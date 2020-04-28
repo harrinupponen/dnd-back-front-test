@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    Eduskuntafy
+{% endblock %}
+{% block app_content %}
+{# this shows form if there is any passed in routes.py #}
+    {% if form %}
+        {{ wtf.quick_form(form) }}
+    <br>
+    {% endif %}
+<br>
+<br>
+
+<input id="image-selector" type="file">
+<button id="predict-button">Predict</button>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript"
+         src="{{ url_for('static', filename='predict.js') }}"></script>
+
+
+<div class="button">
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <input type="file" name="file" id="image">
+        <br>
+        <br>
+        <input type="submit" value="file">
+    </form>
+    <br>
+     
+    <form action="/result" method="GET">
+        <button style="background-color:lightskyblue;" type="submit">Begin</button>
+    </form>
+    <br>
+</div>
+{% endblock %}

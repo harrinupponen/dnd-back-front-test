@@ -1,0 +1,33 @@
+
+{% extends "index.html" %}
+{% block title %}
+    Eduskuntafy
+{% endblock %}
+{% block app_content %}
+    <div class="container">
+
+        
+
+        <p><strong>Prediction</strong></p>
+        <p>Barbarian: <span id="barbarian-prediction"></span></p>
+        <p>Bard: <span id="bard-prediction"></span></p>
+        <p>Cleric: <span id="cleric-prediction"></span></p>
+        <p>Druid: <span id="druid-prediction"></span></p>
+        <p>Fighter: <span id="fighter-prediction"></span></p>
+        <p>Mage: <span id="mage-prediction"></span></p>
+        <p>Monk: <span id="monk-prediction"></span></p>
+        <p>Paladin: <span id="paladin-prediction"></span></p>
+        <p>Rogue: <span id="rogue-prediction"></span></p>
+        <p>Sorcerer: <span id="sorcerer-prediction"></span></p>
+        <p>Warlock: <span id="warlock-prediction"></span></p>
+        <p>Wizard: <span id="wizard-prediction"></span></p>
+        <img id="selected-image" src="" alt="selected-image">
+    </div>
+
+    
+    <div class="button">
+        <form action="/" method="GET">
+            <button style="background-color:lightskyblue;" type="submit">Home</button>
+        </form>
+    </div>
+{% endblock %}
