@@ -12,26 +12,27 @@
 <br>
 <br>
 
-<input id="image-selector" type="file">
-<button id="predict-button">Predict</button>
+<form action="/result" method="GET"></form>
+    <input id="image-selector" type="file">
+    <button id="predict-button" type="submit">Predict</button>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<script type="text/javascript"
-         src="{{ url_for('static', filename='predict.js') }}"></script>
-
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='predict.js') }}"></script>
+</form>
 
 <div class="button">
     <form method="post" enctype="multipart/form-data" action="/upload">
         <input type="file" name="file" id="image">
         <br>
         <br>
-        <input type="submit" value="file">
+        <input type="submit" value="Upload">
     </form>
     <br>
      
     <form action="/result" method="GET">
-        <button style="background-color:lightskyblue;" type="submit">Begin</button>
+        <button style="background-color:lightskyblue;" type="submit">Result</button>
     </form>
     <br>
 </div>

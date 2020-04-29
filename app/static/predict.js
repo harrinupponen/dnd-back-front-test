@@ -5,7 +5,7 @@ let base64Image;
                 let dataURL = reader.result;
                 $('#selected-image').attr('src', dataURL);
                 base64Image = dataURL.replace('data:image/png;base64,', '').replace('data:image/jpeg;base64,', '');
-                console.log(base64Image);
+                //console.log(base64Image);
             }
             reader.readAsDataURL($('#image-selector')[0].files[0]);
             $('#barbarian-prediction').text('');
@@ -26,8 +26,12 @@ let base64Image;
             let message = {
                 image: base64Image
             }
-            console.log(message);
-            $.post('http://localhost:5000/predictdnd', JSON.stringify(message),
+            //console.log(message);
+
+            $.get('http://localhost:5000/result', function() {
+                console.log('GETTEM!');
+            });
+            $.post('http://localhost:5000/result', JSON.stringify(message),
             function(response) {
                 $('#barbarian-prediction').text((100 * (response.prediction.barbarian)).toFixed(2) + '%');
                 $('#bard-prediction').text((100 * (response.prediction.bard)).toFixed(2) + '%');
@@ -42,6 +46,10 @@ let base64Image;
                 $('#warlock-prediction').text((100 * (response.prediction.warlock)).toFixed(2) + '%');
                 $('#wizard-prediction').text((100 * (response.prediction.wizard)).toFixed(2) + '%');
 
-                //console.log(response);
+                console.log(response);
+                
             });
+            // $.get('http://localhost:5000/result', function() {
+            //     console.log('GETTEM!');
+            // });
         });

@@ -79,33 +79,35 @@ def uploaded_file(filename):
 
 #----------------------------------------------------
 
-@app.route('/predictdnd', methods=['POST'])
-def predict():
-    message = request.get_json(force=True)
-    encoded = message['image']
-    decoded = base64.b64decode(encoded)
-    image = Image.open(io.BytesIO(decoded))
-    processed_image = preprocess_image(image, target_size=(224, 224))
-    prediction = model.predict(processed_image).tolist()
-    
-    response = {
-        'prediction': {
-            'barbarian': prediction[0][0],
-            'bard': prediction[0][1],
-            'cleric': prediction[0][2],
-            'druid': prediction[0][3],
-            'fighter': prediction[0][4],
-            'mage': prediction[0][5],
-            'monk': prediction[0][6],
-            'paladin': prediction[0][7],
-            'rogue': prediction[0][8],
-            'sorcerer': prediction[0][9],
-            'warlock': prediction[0][10],
-            'wizard': prediction[0][11]
-        }
-    }
-    return jsonify(response)
-
-@app.route('/result')
+@app.route('/result', methods=['GET', 'POST'])
 def result():
+    if request.method == 'POST':
+        message = request.get_json(force=True)
+        encoded = message['image']
+        decoded = base64.b64decode(encoded)
+        image = Image.open(io.BytesIO(decoded))
+        processed_image = preprocess_image(image, target_size=(224, 224))
+        prediction = model.predict(processed_image).tolist()
+        
+        response = {
+            'prediction': {
+                'barbarian': prediction[0][0],
+                'bard': prediction[0][1],
+                'cleric': prediction[0][2],
+                'druid': prediction[0][3],
+                'fighter': prediction[0][4],
+                'mage': prediction[0][5],
+                'monk': prediction[0][6],
+                'paladin': prediction[0][7],
+                'rogue': prediction[0][8],
+                'sorcerer': prediction[0][9],
+                'warlock': prediction[0][10],
+                'wizard': prediction[0][11]
+            }
+        }
+        return jsonify(response)
     return render_template('result.html')
+
+# @app.route('/result')
+# def result():
+#     return render_template('result.html')
