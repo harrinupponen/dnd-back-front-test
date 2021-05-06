@@ -4,7 +4,7 @@ pip==20.0.2
 requests==2.23.0
 tensorflow==2.0.0
 Pillow==7.0.0
-flask-cors==3.0.8
+flask-cors==3.0.9
 setuptools==41.0.0
 click==7.1.1
 dominate==2.5.1
